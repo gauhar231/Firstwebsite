@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hearth & Honey Café</title>
+
+  <style>
+    :root {
+      --brown: #6c432d;
+      --dark: #3a261d;
+      --cream: #faf6ef;
+      --white: #fffdf8;
+      --muted: #796b60;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .announcement {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    header {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font: 28px Georgia, serif;
+      color: var(--brown);
+      line-height: 1.2;
+    }
+
+    .logo span {
+      display: block;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 3px;
+      margin-top: 6px;
+    }
+
+    nav {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--brown);
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--dark);
+      color: white;
+      padding: 13px 22px;
+      font-size: 13px;
+      transition: 0.25s;
+    }
+
+    .button:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 45px 6% 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+    }
+
+    h1 {
+      font-size: clamp(48px, 6vw, 78px);
+      line-height: 1.05;
+      margin: 22px 0;
+    }
+
+    h1 em {
+      color: var(--brown);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 28px;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 510px;
+      object-fit: cover;
+      border-radius: 48% 48% 4px 4px;
+      display: block;
+    }
+
+    .image-label {
+      position: absolute;
+      right: -15px;
+      bottom: 25px;
+      background: var(--white);
+      padding: 22px;
+      box-shadow: 0 8px 25px #3a261d18;
+      font: 22px Georgia, serif;
+    }
+
+    section {
+      padding: 85px 6%;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(34px, 4vw, 48px);
+      margin: 12px 0;
+      line-height: 1.15;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .menu-section {
+      background: var(--white);
+    }
+
+    .menu-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .menu-card {
+      border: 1px solid #e8ddd0;
+      padding: 12px;
+      background: var(--cream);
+      transition: 0.25s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-details {
+      padding: 18px 8px;
+    }
+
+    .menu-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .menu-title h3 {
+      font-size: 23px;
+    }
+
+    .price {
+      color: var(--brown);
+      white-space: nowrap;
+    }
+
+    .menu-details p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .story {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 65px;
+    }
+
+    .story img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+    }
+
+    .story h2 {
+      font-size: clamp(36px, 4vw, 52px);
+      line-height: 1.12;
+      margin: 18px 0;
+    }
+
+    .story p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .signature {
+      color: var(--brown);
+      font: italic 23px Georgia, serif;
+      margin-top: 25px;
+    }
+
+    .quote {
+      background: #e5e8da;
+      text-align: center;
+      padding: 75px 6%;
+    }
+
+    .quote blockquote {
+      max-width: 800px;
+      margin: auto;
+      font: clamp(27px, 4vw, 42px)/1.3 Georgia, serif;
+    }
+
+    .quote p {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .visit {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .visit h2 {
+      font-size: clamp(36px, 4vw, 50px);
+      line-height: 1.15;
+      margin: 16px 0;
+    }
+
+    .visit p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .visit img {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .info h3 {
+      font: 11px Arial, sans-serif;
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .info p {
+      font-size: 13px;
+      margin: 0;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 35px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: #d3c2b4;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        flex-wrap: wrap;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding-top: 30px;
+      }
+
+      .hero-image img {
+        height: 400px;
+      }
+
+      .image-label {
+        right: 0;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card img {
+        height: 240px;
+      }
+
+      .story, .visit {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .story img, .visit img {
+        height: 320px;
+      }
+
+      section {
+        padding: 65px 6%;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    SLOW MORNINGS · GOOD COFFEE · BETTER COMPANY
+  </div>
+
+  <header>
+    <a class="logo" href="#home">
+      Hearth & Honey
+      <span>COFFEE · BAKERY · LITTLE MOMENTS</span>
+    </a>
+
+    <nav>
+      <a href="#menu">Our Menu</a>
+      <a href="#story">Our Story</a>
+      <a href="#visit">Find Us</a>
+    </nav>
+
+    <a class="button" href="#visit">Visit Our Café ↗</a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">Your neighborhood coffee nook</div>
+
+        <h1>
+          A little<br>
+          pause in<br>
+          <em>your day.</em>
+        </h1>
+
+        <p>
+          Thoughtfully brewed coffee, fresh-from-the-oven treats,
+          and a cozy corner to call your own. Stay for one cup,
+          or let the afternoon unfold.
+        </p>
+
+        <a class="button" href="#menu">Explore Our Menu ↗</a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=85"
+          alt="Coffee and a cozy café atmosphere"
+        >
+
+        <div class="image-label">
+          Make yourself<br>at home.
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+      <div class="section-heading">
+        <div class="eyebrow">The good stuff</div>
+        <h2>Your usual, or something new.</h2>
+        <p>
+          Small-batch coffee, comforting classics, and a few
+          sweet reasons to stay a little longer.
+        </p>
+      </div>
+
+      <div class="menu-grid">
+        <article class="menu-card">
+          <img
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80"
+            alt="Fresh cappuccino"
+          >
+          <div class="menu-details">
+            <div class="menu-title">
+              <h3>Honey Latte</h3>
+              <span class="price">$4.50</span>
+            </div>
+            <p>Espresso, silky milk, and a drizzle of honey.</p>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <img
+            src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80"
+            alt="Freshly brewed coffee"
+          >
+          <div class="menu-details">
+            <div class="menu-title">
+              <h3>House Pour-over</h3>
+              <span class="price">$3.75</span>
+            </div>
+            <p>Bright, balanced coffee brewed slowly to perfection.</p>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <img
+            src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80"
+            alt="Fresh artisan bakery bread"
+          >
+          <div class="menu-details">
+            <div class="menu-title">
+              <h3>Butter Croissant</h3>
+              <span class="price">$3.25</span>
+            </div>
+            <p>Flaky layers, golden edges, and buttery goodness.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="story">
+        <img
+          src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=85"
+          alt="Warm neighborhood café interior"
+        >
+
+        <div>
+          <div class="eyebrow">A seat at our table</div>
+          <h2>Coffee tastes better when you feel at home.</h2>
+
+          <p>
+            Hearth & Honey began with a simple idea: make a place
+            where the coffee is lovely, the welcome is genuine,
+            and nobody minds if you stay a little longer.
+          </p>
+
+          <p>
+            We choose thoughtful ingredients, make things in
+            small batches, and believe the best café moments
+            are often the simplest ones.
+          </p>
+
+          <div class="signature">
+            Come as you are. Stay awhile.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <blockquote>
+        “A good cup of coffee can make an ordinary day feel
+        like a small celebration.”
+      </blockquote>
+      <p>A LITTLE REMINDER FROM US TO YOU</p>
+    </section>
+
+    <section id="visit">
+      <div class="visit">
+        <div>
+          <div class="eyebrow">Drop by for a cup</div>
+          <h2>Your cozy corner is waiting.</h2>
+
+          <p>
+            Bring a book, meet a friend, or simply enjoy a
+            quiet moment with something warm in your hands.
+          </p>
+
+          <div class="info">
+            <div>
+              <h3>Find Us</h3>
+              <p>12 Willow Lane<br>Your City</p>
+            </div>
+
+            <div>
+              <h3>Opening Hours</h3>
+              <p>
+                Mon–Fri: 8am–6pm<br>
+                Sat–Sun: 9am–5pm
+              </p>
+            </div>
+          </div>
+
+          <a class="button" href="mailto:hello@example.com">
+            Say Hello ↗
+          </a>
+        </div>
+
+        <img
+          src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=85"
+          alt="Sunlit café with wooden furniture"
+        >
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#home" style="color:white">
+      Hearth & Honey
+      <span>COFFEE · BAKERY · LITTLE MOMENTS</span>
+    </a>
+
+    <p>Made for slow mornings and lovely afternoons. © 2026</p>
+
+    <a href="#home">Back to top ↑</a>
+  </footer>
+
+</body>
+</html>
